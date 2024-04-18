@@ -1,7 +1,7 @@
-package com.tutorial.carservice.controller;
+package com.prueba.wasteservice.controller;
 
-import com.tutorial.carservice.entity.Car;
-import com.tutorial.carservice.service.CarService;
+import com.prueba.wasteservice.entity.Car;
+import com.prueba.wasteservice.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

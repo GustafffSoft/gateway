@@ -1,10 +1,10 @@
-package com.tutorial.carservice;
+package com.prueba.wasteservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CarServiceApplicationTests {
+class WasteManagerServiceApplicationTests {
 
 	@Test
 	void contextLoads() {

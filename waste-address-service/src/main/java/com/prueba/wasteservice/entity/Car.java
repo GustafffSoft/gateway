@@ -1,4 +1,4 @@
-package com.tutorial.carservice.entity;
+package com.prueba.wasteservice.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

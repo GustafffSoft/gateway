@@ -1,9 +1,9 @@
-package com.tutorial.userservice.repository;
+package com.prueba.addressservice.repository;
 
-import com.tutorial.userservice.entity.User;
+import com.prueba.addressservice.entity.WasteManager;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface WasteManagerRepository extends JpaRepository<WasteManager, Integer> {
 }

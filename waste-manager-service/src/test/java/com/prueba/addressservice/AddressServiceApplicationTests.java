@@ -1,10 +1,10 @@
-package com.tutorial.userservice;
+package com.prueba.addressservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class UserServiceApplicationTests {
+class AddressServiceApplicationTests {
 
 	@Test
 	void contextLoads() {

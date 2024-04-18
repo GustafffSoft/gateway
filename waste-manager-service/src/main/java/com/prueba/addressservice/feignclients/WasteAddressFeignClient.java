@@ -1,15 +1,14 @@
-package com.tutorial.userservice.feignclients;
+package com.prueba.addressservice.feignclients;
 
-import com.tutorial.userservice.model.Car;
+import com.prueba.addressservice.model.Car;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @FeignClient(name = "car-service")
 @RequestMapping("/car")
-public interface CarFeignClient {
+public interface WasteAddressFeignClient {
 
     @PostMapping()
     Car save(@RequestBody Car car);

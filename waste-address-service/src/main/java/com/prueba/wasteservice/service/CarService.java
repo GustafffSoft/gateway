@@ -1,7 +1,7 @@
-package com.tutorial.carservice.service;
+package com.prueba.wasteservice.service;
 
-import com.tutorial.carservice.entity.Car;
-import com.tutorial.carservice.repository.CarRepository;
+import com.prueba.wasteservice.repository.CarRepository;
+import com.prueba.wasteservice.entity.Car;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

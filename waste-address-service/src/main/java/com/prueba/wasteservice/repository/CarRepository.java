@@ -1,6 +1,6 @@
-package com.tutorial.carservice.repository;
+package com.prueba.wasteservice.repository;
 
-import com.tutorial.carservice.entity.Car;
+import com.prueba.wasteservice.entity.Car;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

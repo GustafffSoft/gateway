@@ -1,4 +1,4 @@
-package com.tutorial.userservice.entity;
+package com.prueba.addressservice.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +13,7 @@ import javax.persistence.Id;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class WasteManager {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
