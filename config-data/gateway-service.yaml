@@ -17,15 +17,11 @@ spring:
         locator:
           enabled: true
       routes:
-        - id: user-service
-          uri: lb://user-service
+        - id: waste-manager-service
+          uri: lb://waste-manager-service
           predicates:
-            - Path=/user/**
-        - id: car-service
-          uri: lb://car-service
+            - Path=/waste-manager/**
+        - id: waste-address-service
+          uri: lb://waste-address-service
           predicates:
-            - Path=/car/**
-        - id: bike-service
-          uri: lb://bike-service
-          predicates:
-            - Path=/bike/**
+            - Path=/waste-address/**

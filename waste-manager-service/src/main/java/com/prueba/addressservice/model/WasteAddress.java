@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Car {
+public class WasteAddress {
     private String brand;
     private String model;
     private int wasteManagerId;

@@ -1,6 +1,6 @@
 spring:
   application:
-    name: car-service
+    name: waste-address-service
   cloud:
     config:
       enabled: true

@@ -1,18 +1,18 @@
 package com.prueba.addressservice.feignclients;
 
-import com.prueba.addressservice.model.Car;
+import com.prueba.addressservice.model.WasteAddress;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name = "car-service")
-@RequestMapping("/car")
+@FeignClient(name = "waste-address-service")
+@RequestMapping("/wasteaddress")
 public interface WasteAddressFeignClient {
 
     @PostMapping()
-    Car save(@RequestBody Car car);
+    WasteAddress save(@RequestBody WasteAddress wasteAddress);
 
-    @GetMapping("/byuser/{userId}")
-    List<Car> getCars(@PathVariable("userId") int userId);
+    @GetMapping("/bywastemanager/{wasteManagerId}")
+    List<WasteAddress> getWasteAddress(@PathVariable("wasteManagerId") int wasteManagerId);
 }

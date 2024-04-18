@@ -1,6 +1,6 @@
 spring:
   application:
-    name: user-service
+    name: waste-manager-service
   cloud:
     config:
       enabled: true

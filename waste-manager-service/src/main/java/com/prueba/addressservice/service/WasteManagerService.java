@@ -2,7 +2,7 @@ package com.prueba.addressservice.service;
 
 import com.prueba.addressservice.entity.WasteManager;
 import com.prueba.addressservice.feignclients.WasteAddressFeignClient;
-import com.prueba.addressservice.model.Car;
+import com.prueba.addressservice.model.WasteAddress;
 import com.prueba.addressservice.repository.WasteManagerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,17 +38,17 @@ public class WasteManagerService {
         return wasteManagerNew;
     }
 
-    public List<Car> getCars(int wasteManagerId) {
-        List<Car> cars = restTemplate.getForObject("http://car-service/car/byuser/" + wasteManagerId, List.class);
-        return cars;
+    public List<WasteAddress> getWasteAddress(int wasteManagerId) {
+        List<WasteAddress> wasteAddresses = restTemplate.getForObject("http://waste-address-service/wasteaddress/bywastemanager/" + wasteManagerId, List.class);
+        return wasteAddresses;
     }
 
 
 
-    public Car saveCar(int wasteManagerId, Car car) {
-        car.setWasteManagerId(wasteManagerId);
-        Car carNew = wasteAddressFeignClient.save(car);
-        return carNew;
+    public WasteAddress saveWasteAddress(int wasteManagerId, WasteAddress wasteAddress) {
+        wasteAddress.setWasteManagerId(wasteManagerId);
+        WasteAddress wasteAddressNew = wasteAddressFeignClient.save(wasteAddress);
+        return wasteAddressNew;
     }
 
 
@@ -61,11 +61,11 @@ public class WasteManagerService {
             return result;
         }
         result.put("Waste Manager", wasteManager);
-        List<Car> cars = wasteAddressFeignClient.getCars(wasteManagerId);
-        if(cars.isEmpty())
+        List<WasteAddress> wasteAddresses = wasteAddressFeignClient.getWasteAddress(wasteManagerId);
+        if(wasteAddresses.isEmpty())
             result.put("Waste Address", "ese waste manager no tiene coches");
         else
-            result.put("WasteAddress", cars);
+            result.put("WasteAddress", wasteAddresses);
         return result;
     }
 }

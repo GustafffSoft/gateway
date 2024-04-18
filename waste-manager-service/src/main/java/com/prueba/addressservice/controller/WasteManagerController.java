@@ -2,7 +2,7 @@ package com.prueba.addressservice.controller;
 
 import com.prueba.addressservice.entity.WasteManager;
 import com.prueba.addressservice.service.WasteManagerService;
-import com.prueba.addressservice.model.Car;
+import com.prueba.addressservice.model.WasteAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,21 +39,21 @@ public class WasteManagerController {
         return ResponseEntity.ok(wasteManagerNew);
     }
 
-    @GetMapping("/cars/{wasteManagerId}")
-    public ResponseEntity<List<Car>> getCars(@PathVariable("wasteManagerId") int wasteManagerId) {
+    @GetMapping("/wasteaddress/{wasteManagerId}")
+    public ResponseEntity<List<WasteAddress>> getWasteAddress(@PathVariable("wasteManagerId") int wasteManagerId) {
         WasteManager wasteManager = wasteManagerService.getWasteManagerById(wasteManagerId);
         if(wasteManager == null)
             return ResponseEntity.notFound().build();
-        List<Car> cars = wasteManagerService.getCars(wasteManagerId);
-        return ResponseEntity.ok(cars);
+        List<WasteAddress> wasteAddresses = wasteManagerService.getWasteAddress(wasteManagerId);
+        return ResponseEntity.ok(wasteAddresses);
     }
 
-    @PostMapping("/savecar/{wasteManagerId}")
-    public ResponseEntity<Car> saveCar(@PathVariable("wasteManagerId") int wasteManagerId, @RequestBody Car car) {
+    @PostMapping("/savewasteaddress/{wasteManagerId}")
+    public ResponseEntity<WasteAddress> saveWasteAddress(@PathVariable("wasteManagerId") int wasteManagerId, @RequestBody WasteAddress wasteAddress) {
         if(wasteManagerService.getWasteManagerById(wasteManagerId) == null)
             return ResponseEntity.notFound().build();
-        Car carNew = wasteManagerService.saveCar(wasteManagerId, car);
-        return ResponseEntity.ok(car);
+        WasteAddress wasteAddressNew = wasteManagerService.saveWasteAddress(wasteManagerId, wasteAddress);
+        return ResponseEntity.ok(wasteAddress);
     }
 
     @GetMapping("/getAll/{wasteManagerId}")
