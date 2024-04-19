@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @FeignClient(name = "waste-address-service")
-@RequestMapping("/wasteaddress")
+@RequestMapping("/waste-address")
 public interface WasteAddressFeignClient {
 
-    @PostMapping()
+    @PostMapping("/save")
     WasteAddress save(@RequestBody WasteAddress wasteAddress);
 
     @GetMapping("/bywastemanager/{wasteManagerId}")
-    List<WasteAddress> getWasteAddress(@PathVariable("wasteManagerId") int wasteManagerId);
+    WasteAddress getWasteAddress(@PathVariable("wasteManagerId") Long wasteManagerId);
 }

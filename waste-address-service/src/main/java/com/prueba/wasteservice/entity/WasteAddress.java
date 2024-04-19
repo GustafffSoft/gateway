@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Entity
 @Data
@@ -17,8 +18,10 @@ public class WasteAddress {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String brand;
-    private String model;
-    private int userId;
+    private Long id;
+    private String direccion;
+    private Boolean isEnabled = Boolean.TRUE;
+    private Long version = 0L;
+    private Date createdDate;
+    private Date lastModifiedDate;
 }

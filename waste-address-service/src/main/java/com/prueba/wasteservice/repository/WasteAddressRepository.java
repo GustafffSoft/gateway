@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface WasteAddressRepository extends JpaRepository<WasteAddress, Integer> {
+public interface WasteAddressRepository extends JpaRepository<WasteAddress, Long> {
 
-    List<WasteAddress> findByUserId(int userId);
 }

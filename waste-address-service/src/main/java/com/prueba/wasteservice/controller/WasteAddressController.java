@@ -3,6 +3,7 @@ package com.prueba.wasteservice.controller;
 import com.prueba.wasteservice.entity.WasteAddress;
 import com.prueba.wasteservice.service.WasteAddressService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,23 +25,38 @@ public class WasteAddressController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<WasteAddress> getById(@PathVariable("id") int id) {
+    public ResponseEntity<WasteAddress> getById(@PathVariable("id") Long id) {
         WasteAddress wasteAddress = wasteAddressService.getWasteAddressById(id);
         if(wasteAddress == null)
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(wasteAddress);
     }
 
-    @PostMapping()
+    @PostMapping("/save")
     public ResponseEntity<WasteAddress> save(@RequestBody WasteAddress wasteAddress) {
         WasteAddress wasteAddressNew = wasteAddressService.save(wasteAddress);
         return ResponseEntity.ok(wasteAddressNew);
     }
 
-    @GetMapping("/byuser/{userId}")
-    public ResponseEntity<List<WasteAddress>> getByUserId(@PathVariable("userId") int userId) {
-        List<WasteAddress> wasteAddresses = wasteAddressService.byUserId(userId);
-        return ResponseEntity.ok(wasteAddresses);
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateWasteAddress(@PathVariable Long id, @RequestBody WasteAddress wasteAddress) {
+        try {
+            WasteAddress updatedWasteAddress = wasteAddressService.updateWasteAddress(id, wasteAddress);
+            return ResponseEntity.ok(updatedWasteAddress);
+        }  catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteWasteAddress(@PathVariable Long id) {
+        try {
+            wasteAddressService.deleteWasteAddress(id);
+            return ResponseEntity.ok().build();
+        }  catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
     }
 
 }

@@ -1,6 +1,7 @@
 package com.prueba.addressservice.controller;
 
 import com.prueba.addressservice.entity.WasteManager;
+import com.prueba.addressservice.model.WasteManagerAndAddressDTO;
 import com.prueba.addressservice.service.WasteManagerService;
 import com.prueba.addressservice.model.WasteAddress;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,38 +27,35 @@ public class WasteManagerController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<WasteManager> getById(@PathVariable("id") int id) {
+    public ResponseEntity<WasteManager> getById(@PathVariable("id") Long id) {
         WasteManager wasteManager = wasteManagerService.getWasteManagerById(id);
         if(wasteManager == null)
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(wasteManager);
     }
 
-    @PostMapping()
+    @PostMapping("/save")
     public ResponseEntity<WasteManager> save(@RequestBody WasteManager wasteManager) {
         WasteManager wasteManagerNew = wasteManagerService.save(wasteManager);
         return ResponseEntity.ok(wasteManagerNew);
     }
 
-    @GetMapping("/wasteaddress/{wasteManagerId}")
-    public ResponseEntity<List<WasteAddress>> getWasteAddress(@PathVariable("wasteManagerId") int wasteManagerId) {
-        WasteManager wasteManager = wasteManagerService.getWasteManagerById(wasteManagerId);
-        if(wasteManager == null)
-            return ResponseEntity.notFound().build();
-        List<WasteAddress> wasteAddresses = wasteManagerService.getWasteAddress(wasteManagerId);
-        return ResponseEntity.ok(wasteAddresses);
-    }
+//    @PostMapping("/save")
+//    public ResponseEntity<WasteManager> save(@RequestBody WasteManagerAndAddressDTO dto) {
+//        WasteManager savedWasteManager = wasteManagerService.save(dto);
+//        return ResponseEntity.ok(savedWasteManager);
+//    }
 
     @PostMapping("/savewasteaddress/{wasteManagerId}")
-    public ResponseEntity<WasteAddress> saveWasteAddress(@PathVariable("wasteManagerId") int wasteManagerId, @RequestBody WasteAddress wasteAddress) {
+    public ResponseEntity<WasteAddress> saveWasteAddress(@PathVariable("wasteManagerId") Long wasteManagerId, @RequestBody WasteAddress wasteAddress) {
         if(wasteManagerService.getWasteManagerById(wasteManagerId) == null)
             return ResponseEntity.notFound().build();
         WasteAddress wasteAddressNew = wasteManagerService.saveWasteAddress(wasteManagerId, wasteAddress);
         return ResponseEntity.ok(wasteAddress);
     }
 
-    @GetMapping("/getAll/{wasteManagerId}")
-    public ResponseEntity<Map<String, Object>> getAllVehicles(@PathVariable("wasteManagerId") int wasteManagerId) {
+    @GetMapping("/getall/{wasteManagerId}")
+    public ResponseEntity<Map<String, Object>> getAllWasteManagerAndAddress(@PathVariable("wasteManagerId") Long wasteManagerId) {
         Map<String, Object> result = wasteManagerService.getWasteManagerAndAddress(wasteManagerId);
         return ResponseEntity.ok(result);
     }
