@@ -84,7 +84,6 @@ public class WasteManagerService {
         if (wasteAddress != null) {
             combinedDTO.setWasteAddress(convertToWasteAddressDTO(wasteAddress));
         } else {
-            // Opcionalmente establecer un objeto predeterminado o nulo en el DTO para indicar que no se encontraron datos
             combinedDTO.setWasteAddress(new WasteAddressDTO());
         }
 
