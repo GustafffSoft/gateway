@@ -13,6 +13,12 @@ public interface WasteAddressFeignClient {
     @PostMapping("/save")
     WasteAddress save(@RequestBody WasteAddress wasteAddress);
 
-    @GetMapping("/bywastemanager/{wasteManagerId}")
+    @GetMapping("/{wasteManagerId}")
     WasteAddress getWasteAddress(@PathVariable("wasteManagerId") Long wasteManagerId);
+
+    @DeleteMapping("/{id}")
+    void deleteWasteAddress(@PathVariable("id") Long id);
+
+    @PutMapping("/{id}")
+    WasteAddress updateWasteAddress(@PathVariable("id") Long id, @RequestBody WasteAddress wasteAddress);
 }

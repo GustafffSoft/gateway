@@ -16,14 +16,6 @@ public class WasteAddressController {
     @Autowired
     WasteAddressService wasteAddressService;
 
-    @GetMapping
-    public ResponseEntity<List<WasteAddress>> getAll() {
-        List<WasteAddress> wasteAddresses = wasteAddressService.getAll();
-        if(wasteAddresses.isEmpty())
-            return ResponseEntity.noContent().build();
-        return ResponseEntity.ok(wasteAddresses);
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<WasteAddress> getById(@PathVariable("id") Long id) {
         WasteAddress wasteAddress = wasteAddressService.getWasteAddressById(id);

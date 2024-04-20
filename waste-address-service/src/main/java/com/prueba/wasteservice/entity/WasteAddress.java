@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -22,6 +19,19 @@ public class WasteAddress {
     private String direccion;
     private Boolean isEnabled = Boolean.TRUE;
     private Long version = 0L;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
+
+    @Temporal(TemporalType.TIMESTAMP)
     private Date lastModifiedDate;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdDate = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.lastModifiedDate = new Date();
+    }
 }
