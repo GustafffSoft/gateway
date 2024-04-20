@@ -20,8 +20,7 @@ public class WasteManager {
     private Long id;
     private String nombre;
     private String nif;
-    @OneToMany(fetch = FetchType.LAZY,cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-    @JoinTable(name = "wastemanage_wastecenter", joinColumns = @JoinColumn(name = "wastemanage_is", nullable = false), inverseJoinColumns = @JoinColumn(name = "wastecenter_id)", nullable = false))
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "wasteManager")
     private List<WasteCenterAuthorization> listOfWasteCenterAuthorization = new ArrayList<>();
     private Boolean isEnabled = Boolean.TRUE;
     private long version = 0L;

@@ -3,11 +3,12 @@ package com.prueba.addressservice.service;
 import com.prueba.addressservice.entity.WasteManager;
 import com.prueba.addressservice.feignclients.WasteAddressFeignClient;
 import com.prueba.addressservice.model.WasteAddress;
-import com.prueba.addressservice.model.WasteManagerAndAddressDTO;
 import com.prueba.addressservice.repository.WasteManagerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import javax.transaction.Transactional;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.Map;
 
 @Service
 public class WasteManagerService {
+    private static final Logger log = LoggerFactory.getLogger(WasteManagerService.class);
 
     @Autowired
     WasteManagerRepository wasteManagerRepository;
@@ -33,7 +35,17 @@ public class WasteManagerService {
     }
 
     public WasteManager save(WasteManager wasteManager) {
-        return wasteManagerRepository.save(wasteManager);
+        try {
+            WasteManager savedWasteManager = wasteManagerRepository.save(wasteManager);
+            log.info("WasteManager saved successfully: {}", savedWasteManager);
+            return savedWasteManager;
+        } catch (DataAccessException e) {
+            log.error("Error saving WasteManager: {}", wasteManager, e);
+            throw new RuntimeException("Failed to save WasteManager", e);
+        } catch (Exception e) {
+            log.error("Unexpected error when saving WasteManager: {}", wasteManager, e);
+            throw e;
+        }
     }
 
 //    @Transactional
